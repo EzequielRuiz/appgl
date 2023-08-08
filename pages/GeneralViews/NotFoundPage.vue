@@ -34,7 +34,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(162, 255, 159);
   }
 }
 </style>

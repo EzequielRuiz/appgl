@@ -16,7 +16,7 @@
           <span class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <a class="navbar-brand ml-xl-3 ml-5" href="#pablo">{{ routeName }}</a>
+      <a class="navbar-brand ml-xl-3 ml-5" href="#ezequielruiz">{{ routeName }}</a>
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
