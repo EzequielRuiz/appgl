@@ -3,7 +3,7 @@
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div class="logo">
         <a href="https://miemmtec.com.ar" class="simple-text logo-mini">
-          <img src="static/logo_whitepng.png" alt="app-logo" />
+          <img src="img/mike.jpg" alt="app-logo" />
         </a>
         <a href="https://miemmtec.com.ar" class="simple-text logo-normal">
           {{ title }}

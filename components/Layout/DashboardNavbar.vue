@@ -78,7 +78,7 @@
         menu-classes="dropdown-navbar"
       >
         <template slot="title">
-          <div class="photo"><img src="static/logo_whitepng.png" /></div>
+          <div class="photo"><img src="img/mike.jpg" /></div>
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p @click="logOut()" class="d-lg-none">Log out</p>
         </template>
