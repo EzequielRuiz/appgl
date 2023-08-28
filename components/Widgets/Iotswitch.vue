@@ -1,23 +1,16 @@
 <template>
-
     <card>
-
-        <template slot="header">
-           
+        <template slot="header">           
             <h5 class="card-category"> {{ config.selectedDevice.name }} - {{ config.variableFullName }}</h5>
-
             <h3 class="card-title">
-                <i class="fa " :class="[config.icon, getIconColorClass()]" aria-hidden="true"
-                    style="font-size: 30px;"></i>
+                <i
+                  class="fa " :class="[config.icon, getIconColorClass()]" style="font-size: 30px"
+                ></i>
                 <base-switch @click="value = !value; sendValue()" :value="value" type="primary" on-text="ON" off-text="OFF" style="margin-top: 10px;" class="pull-right">
                 </base-switch>
-
             </h3>
-
         </template>
-
     </card>
-
 </template>
 
 
@@ -28,7 +21,10 @@
         
         data() {
             return {
-                value: true
+                value: true,
+                valueact: false,
+                topic: "",
+                props: ['config']   
             };
         },
         watch: {
@@ -36,24 +32,42 @@
                 immediate: true,
                 deep: true,
                 handler() {
+                    setTimeout(() => {
+                        this.valueact = false;
+
+                        this.$nuxt.$off(this.topic);
+
+                        //userId/dId/uniquestr/sdata
+                        const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
+                        this.$nuxt.$on(topic, this.processReceivedData);
+
+                    }, 300);
 
                 }
             }
         },
 
         mounted() {
-
-
-
+            const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
+            this.$nuxt.$on(topic, this.processReceivedData);
         },
-        beforeDestroy() {
 
+        beforeDestroy() {
+            this.$nuxt.$off(this.topic);
         },
         methods: {
-
+            processReceivedData(data){
+                try {
+                     console.log("received");
+                     console.log(data);
+                     this.valueact = data.valueact;
+                  } catch (error) {
+                     console.log(error);
+                     }
+                 },
             getIconColorClass() {
                 //para apagar el icono 
-                if (!this.value){
+                if (!this.valueact){
                     return "text-dark";
                 }
 

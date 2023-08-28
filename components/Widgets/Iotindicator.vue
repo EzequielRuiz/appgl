@@ -17,6 +17,7 @@
 <script>
 export default {
   props: ['config'],
+
   data() {
     return {
       value: false,
@@ -30,7 +31,7 @@ export default {
                 deep: true,
                 handler() {
                     setTimeout(() => {
-                        this.value = false;
+                        this.valueact = false;
 
                         this.$nuxt.$off(this.topic);
 
@@ -50,19 +51,17 @@ export default {
     this.$nuxt.$off(this.topic);
   },
   methods: {
-
     processReceivedData(data){
       try {
         console.log("received");
         console.log(data);
-        this.value = data.value;
+        this.valueact = data.valueact;
       } catch (error) {
         console.log(error);
       }
-    },
-      
+    },      
     getIconColorClass() {
-      if (!this.value) {
+      if (!this.valueact) {
         return "text-dark";
       }
 
